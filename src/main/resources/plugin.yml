@@ -1,0 +1,5 @@
+name: SingleCustomEnchantAPI
+version: 1.0
+main: org.playbey.singlecustomenchantapi.SingleCustomEnchantAPI
+api-version: "1.16"
+author: 'SingleDev(PlayBey)'
