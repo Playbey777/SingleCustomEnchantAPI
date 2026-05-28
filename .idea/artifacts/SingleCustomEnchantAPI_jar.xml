@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SingleCustomEnchantAPI:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SingleCustomEnchantAPI_jar</output-path>
+    <root id="archive" name="SingleCustomEnchantAPI.jar">
+      <element id="module-output" name="SingleCustomEnchantAPI" />
+    </root>
+  </artifact>
+</component>

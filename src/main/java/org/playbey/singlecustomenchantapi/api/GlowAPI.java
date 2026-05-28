@@ -11,8 +11,18 @@ public class GlowAPI {
         if (item == null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
 
-        meta.addEnchant(SingleCustomEnchantAPI.getInstance().getGlowEnchant(), 1, true);
-        meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        int enchantCount = meta.getEnchants().size();
+        if (meta.hasEnchant(SingleCustomEnchantAPI.getInstance().getGlowEnchant())) {
+            enchantCount--;
+        }
+
+        if (enchantCount == 0) {
+            meta.addEnchant(SingleCustomEnchantAPI.getInstance().getGlowEnchant(), 1, true);
+            meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        } else {
+            meta.removeEnchant(SingleCustomEnchantAPI.getInstance().getGlowEnchant());
+            meta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
 
         item.setItemMeta(meta);
     }
@@ -21,9 +31,8 @@ public class GlowAPI {
         if (item == null || !item.hasItemMeta()) return;
         ItemMeta meta = item.getItemMeta();
 
-        if (meta.hasEnchant(SingleCustomEnchantAPI.getInstance().getGlowEnchant())) {
-            meta.removeEnchant(SingleCustomEnchantAPI.getInstance().getGlowEnchant());
-        }
+        meta.removeEnchant(SingleCustomEnchantAPI.getInstance().getGlowEnchant());
+        meta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
 
         item.setItemMeta(meta);
     }
