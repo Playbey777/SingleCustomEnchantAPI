@@ -9,7 +9,7 @@ import java.lang.reflect.Field;
 public class SingleCustomEnchantAPI extends JavaPlugin {
 
     private static SingleCustomEnchantAPI instance;
-    private GlowEnchant glowEnchant;
+    private Enchantment glowEnchant;
 
     @Override
     public void onLoad() {
@@ -29,13 +29,15 @@ public class SingleCustomEnchantAPI extends JavaPlugin {
             f.set(null, true);
 
             NamespacedKey key = new NamespacedKey(this, "glow");
-            glowEnchant = new GlowEnchant(key);
+            GlowEnchant customGlow = new GlowEnchant(key);
 
-            Enchantment.registerEnchantment(glowEnchant);
+            Enchantment.registerEnchantment(customGlow);
+            glowEnchant = customGlow;
+        } catch (NoSuchFieldException e) {
         } catch (IllegalArgumentException e) {
             Enchantment existing = Enchantment.getByKey(new NamespacedKey(this, "glow"));
-            if (existing instanceof GlowEnchant) {
-                glowEnchant = (GlowEnchant) existing;
+            if (existing != null) {
+                glowEnchant = existing;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +48,7 @@ public class SingleCustomEnchantAPI extends JavaPlugin {
         return instance;
     }
 
-    public GlowEnchant getGlowEnchant() {
+    public Enchantment getGlowEnchant() {
         return glowEnchant;
     }
 }
